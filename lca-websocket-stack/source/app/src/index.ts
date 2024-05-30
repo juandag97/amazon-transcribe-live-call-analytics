@@ -266,8 +266,10 @@ const endCall = async (ws: WebSocket, callMetaData: CallMetaData|undefined, sock
             }
             writeStream.end();
     
-            await writeToS3(callMetaData, tempRecordingFilename);
-            await writeToS3(callMetaData, wavRecordingFilename);
+            // To not record call audio
+            // await writeToS3(callMetaData, tempRecordingFilename);
+            // await writeToS3(callMetaData, wavRecordingFilename);
+            console.log("This websocket does not save audio recordings")
             await deleteTempFile(callMetaData, path.join(LOCAL_TEMP_DIR, tempRecordingFilename));
             await deleteTempFile(callMetaData, path.join(LOCAL_TEMP_DIR, wavRecordingFilename));
     
